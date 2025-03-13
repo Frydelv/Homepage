@@ -103,8 +103,6 @@
   </div>
 
   <nav class="nav-links {isMenuOpen ? 'open' : ''}">
-    <a href="/status" on:click={closeMenu}>Status</a>
     <a href="https://discord.gg/gWnkSaPCXw" on:click={closeMenu}>Discord</a>
-    <a href="/contact" on:click={closeMenu}>Contact Us</a>
   </nav>
 </header>

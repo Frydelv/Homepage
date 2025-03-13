@@ -6,5 +6,4 @@
 <Header />
 
 <body>
-    Hello world
 </body>
