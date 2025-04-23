@@ -1,3 +1,4 @@
+<!--/src/lib/components/Header/Header.svelte-->
 <script>
   import { onMount } from 'svelte';
   import banner from '$lib/assets/banner.png';
