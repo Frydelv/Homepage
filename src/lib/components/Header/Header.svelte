@@ -72,14 +72,17 @@
   @media (max-width: 768px) {
     .nav-links {
       display: none;
+      display: none;
       flex-direction: column;
-      position: absolute;
+      position: fixed;
       top: 60px;
-      right: 1rem;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
       background: #333333;
-      padding: 1rem;
-      border: 1px solid #242323;
-      border-radius: 4px;
+      padding: 2rem;
+      border-top: 1px solid #242323;
+      z-index: 1000;
     }
 
     .nav-links.open {
@@ -96,7 +99,7 @@
   <a href="/">
     <img src={banner} alt="Fryde Logo" class="logo" />
   </a>
-  <div class="hamburger" on:click={toggleMenu}>
+  <div class="hamburger" on:click={toggleMenu}> <!-- wtf??? -->
     <div></div>
     <div></div>
     <div></div>
