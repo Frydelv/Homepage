@@ -100,11 +100,11 @@
   <a href="/">
     <img src={banner} alt="Fryde Logo" class="logo" />
   </a>
-  <div class="hamburger" on:click={toggleMenu}> <!-- wtf??? -->
+  <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu">
     <div></div>
     <div></div>
     <div></div>
-  </div>
+  </button>
 
   <nav class="nav-links {isMenuOpen ? 'open' : ''}">
     <a href="https://discord.gg/gWnkSaPCXw" on:click={closeMenu}>Discord</a>
