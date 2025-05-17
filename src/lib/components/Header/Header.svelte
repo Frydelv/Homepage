@@ -2,6 +2,7 @@
 <script>
   import { onMount } from 'svelte';
   import banner from '$lib/assets/banner.png';
+  import { gsap } from "gsap";
 
   let isMenuOpen = false;
 
@@ -14,6 +15,21 @@
   };
 
   onMount(() => {
+    // header animation
+      gsap.from("header", {
+      y: -50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.2
+    });
+    // logo animation
+      gsap.from(".logo", {
+      scale: 0.8,
+      rotation: -5,
+      duration: 1,
+      ease: "elastic.out(1, 0.5)"
+    });
     const handleResize = () => {
       if (window.innerWidth > 768 && isMenuOpen) {
         closeMenu();
