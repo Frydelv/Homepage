@@ -8,6 +8,8 @@
         right: 0;
         left: 0;
         text-align: center;
+        border: #242323;
+        border-top: 1px solid #242323;
     }
     h1 {
         margin: 0;
