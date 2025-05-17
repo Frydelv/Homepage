@@ -1,12 +1,18 @@
 <!--/src/lib/components/Footer/Footer.svelte-->
 <style>
     footer {
-        text-align: center;
+        position: fixed;
         padding: 3px;
         margin: 0;
-        bottom: -50px;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        text-align: center;
+    }
+    h1 {
+        margin: 0;
     }
 </style>
 <footer>
-    <h1>hey</h1>
+    <h1>&copy; Copyright 2024 - 2025</h1>
 </footer>
