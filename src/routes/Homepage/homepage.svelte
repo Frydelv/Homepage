@@ -46,7 +46,9 @@
 </script>
 
 <svelte:head>
-  <title>Not found</title>
+  <title>Fryde</title>
+  <meta name="author" content="Fryde">
+  <meta name="description" content="Software company">
 </svelte:head>
 
 <div class="not-found-box" 
