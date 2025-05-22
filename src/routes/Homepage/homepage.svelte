@@ -69,16 +69,16 @@
   <meta name="twitter:image" content="https://fryde.id.lv/twitter-image.jpg">
 </svelte:head>
 
-<div class="not-found-box" 
+<div class="no-content-box" 
      style="left: {box.x}px; 
             top: {box.y + contentTop}px; 
             width: {box.width}px; 
             height: {box.height}px">
-  Not found
+  no content
 </div>
 
 <style>
-  .not-found-box {
+  .no-content-box {
     position: absolute;
     background-color: black;
     border: 2px solid #ccc;
