@@ -46,9 +46,27 @@
 </script>
 
 <svelte:head>
-  <title>Fryde</title>
+  <title>Fryde - Innovative Software Solutions & Development</title>
   <meta name="author" content="Fryde">
-  <meta name="description" content="Software company">
+  <meta name="description" content="Fryde is a cutting-edge software company specializing in custom software development, digital solutions, and innovative technology services for businesses.">
+  <meta name="keywords" content="software development, custom software, technology solutions, digital transformation, software company">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://fryde.id.lv/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fryde.id.lv">
+  <meta property="og:title" content="Fryde - Innovative Software Solutions">
+  <meta property="og:description" content="Transform your business with custom software solutions and innovative technology services by Fryde.">
+  <meta property="og:image" content="https://fryde.id.lv/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://fryde.id.lv/">
+  <meta name="twitter:title" content="Fryde - Innovative Software Solutions">
+  <meta name="twitter:description" content="Transform your business with custom software solutions and innovative technology services by Fryde.">
+  <meta name="twitter:image" content="https://fryde.id.lv/twitter-image.jpg">
 </svelte:head>
 
 <div class="not-found-box" 
