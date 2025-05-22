@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://fryde.id.lv/sitemap.xml
