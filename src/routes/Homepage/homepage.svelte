@@ -1,47 +1,34 @@
 <!-- src/routes/Homepage/homepage.svelte -->
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import { gsap } from 'gsap';
 
-  let box = {
-    x: 0,
-    y: 0,
-    width: 120,
-    height: 60,
-    dx: 1.5,
-    dy: 1.5
-  };
+  let requestCount = 0;
+  let countElement: HTMLDivElement;
 
-  let contentHeight = 0;
-  let contentWidth = 0;
-  let contentTop = 0;
+  async function fetchRequests() {
+    try {
+      const response = await fetch('https://api.fryde.id.lv/requests');
+      const data: { requests: number } = await response.json();
+      animateCounter(data.requests);
+    } catch (error) {
+      console.error('Error fetching requests:', error);
+    }
+  }
 
+  function animateCounter(newValue: number) {
+    gsap.to(countElement, {
+      innerHTML: newValue,
+      duration: 1,
+      snap: { innerHTML: 1 },
+      ease: "power2.out"
+    });
+  }
 
-  // deepseek bs, i aint that smart to make this yet
   onMount(() => {
-    const contentArea = document.querySelector('.content-area') || document.body;
-    const rect = contentArea.getBoundingClientRect();
-    
-    contentHeight = rect.height;
-    contentWidth = rect.width;
-    contentTop = rect.top;
-
-    box.x = (contentWidth - box.width) / 2;
-    box.y = (contentHeight - box.height) / 2;
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      box.x += box.dx;
-      box.y += box.dy;
-      if (box.x + box.width > contentWidth || box.x < 0) {
-        box.dx = -box.dx;
-      }
-      if (box.y + box.height > contentHeight || box.y < 0) {
-        box.dy = -box.dy;
-      }
-    };
-
-    animate();
+    fetchRequests();
+    const interval = setInterval(fetchRequests, 3000);
+    return () => clearInterval(interval);
   });
 </script>
 
@@ -69,25 +56,33 @@
   <meta name="twitter:image" content="https://fryde.id.lv/twitter-image.jpg">
 </svelte:head>
 
-<div class="no-content-box" 
-     style="left: {box.x}px; 
-            top: {box.y + contentTop}px; 
-            width: {box.width}px; 
-            height: {box.height}px">
-  no content
+<div class="counter-container">
+  <div class="counter" bind:this={countElement}>0</div>
+  <div class="label">Total Requests</div>
 </div>
 
 <style>
-  .no-content-box {
-    position: absolute;
-    background-color: black;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .counter-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     font-family: sans-serif;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    pointer-events: none;
+  }
+
+  .counter {
+    font-size: 8rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  }
+
+  .label {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
   }
 </style>
