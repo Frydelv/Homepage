@@ -89,10 +89,10 @@
           'Content-Type': 'application/json'
         },
         mode: 'cors'      });
-      if (response.ok || response.status === 301) {
+      if (response.ok || response.status === 302) {
         user = null;
         closeProfileMenu();
-        if (response.status === 301) {
+        if (response.status === 302) {
           window.location.href = 'https://fryde.id.lv';
         } else {
           window.location.href = '/';
