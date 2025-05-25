@@ -2,14 +2,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
+  import { env } from '$env/dynamic/public';
 
   let requestCount = 0;
   let countElement: HTMLDivElement;
 
   async function fetchRequests() {
     try {
-      const response = await fetch('https://api.fryde.id.lv/requests');
+      const response = await fetch(`${env.PUBLIC_SERVER_URL}/requests`);
       const data: { requests: number } = await response.json();
+      requestCount = data.requests;
       animateCounter(data.requests);
     } catch (error) {
       console.error('Error fetching requests:', error);
@@ -59,6 +61,7 @@
 <div class="counter-container">
   <div class="counter" bind:this={countElement}>0</div>
   <div class="label">Total Requests</div>
+  <a href="{env.PUBLIC_SERVER_URL}" class="api-link" target="_blank">From API</a>
 </div>
 
 <style>
@@ -84,5 +87,19 @@
     margin-top: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+  }
+
+  .api-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .api-link:hover {
+    opacity: 1;
   }
 </style>
