@@ -88,12 +88,15 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        mode: 'cors'
-      });
-      if (response.ok) {
+        mode: 'cors'      });
+      if (response.ok || response.status === 301) {
         user = null;
         closeProfileMenu();
-        window.location.href = '/';
+        if (response.status === 301) {
+          window.location.href = 'https://fryde.id.lv';
+        } else {
+          window.location.href = '/';
+        }
       } else {
         const error = await response.json();
         console.error('Logout failed:', error);
