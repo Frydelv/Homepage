@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import banner from '$lib/assets/banner.png';
   import { gsap } from "gsap";
+  import { checkAuth } from '$lib/utils/auth';
   import { env } from '$env/dynamic/public';
 
   interface User {
@@ -80,6 +81,8 @@
     isProfileMenuOpen = false;
   };
 
+
+
   const logout = async () => {
     try {
       const response = await fetch(`${env.PUBLIC_SERVER_URL}/v1/user/logout`, {
@@ -88,10 +91,12 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        mode: 'cors'      });      if (response.ok || response.status === 302) {
+        mode: 'cors'
+      });
+      if (response.ok || response.status === 302) {
         user = null;
         closeProfileMenu();
-        window.location.reload();
+        window.location.href = '/login';
       } else {
         const error = await response.json();
         console.error('Logout failed:', error);
@@ -103,20 +108,10 @@
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch(`${env.PUBLIC_SERVER_URL}/v1/user/profile`, {
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors'
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        user = data.user;
+      const { isAuthenticated, user: authUser } = await checkAuth();
+      if (isAuthenticated && authUser) {
+        user = authUser;
       } else {
-        const error = await response.json();
-        console.error('Auth check failed:', error);
         user = null;
       }
     } catch (error) {
